@@ -3,10 +3,9 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-//#include <filesystem>
 #include "B+Tree.h"
 
-#define _CRT_SECURE_NO_DEPRECATE  //for VS 2019
+#define _CRT_SECURE_NO_DEPRECATE
 
 void insertionMethod(BPTree** bPTree) {
     int rollNo;
@@ -19,13 +18,14 @@ void insertionMethod(BPTree** bPTree) {
     cout << "\nWhat's the Name, Age and Marks acquired?: ";
     cin >> name >> age >> marks;
 
+    // Create and write student data to file
     string fileName = "DBFiles/";
     fileName += to_string(rollNo) + ".txt";
     FILE* filePtr = fopen(fileName.c_str(), "w");
     string userTuple = name + " " + to_string(age) + " " + to_string(marks) + "\n";
     fprintf(filePtr, userTuple.c_str());
-    //fclose(filePtr);
 
+    // Insert record into B+ tree
     (*bPTree)->insert(rollNo, filePtr);
     fclose(filePtr);
     cout << "Insertion of roll No: " << rollNo << " Successful"<<endl;
@@ -45,6 +45,7 @@ void printMethod(BPTree* bPTree) {
     cin >> opt;
 
     cout << "\nHere is your File Structure" << endl;
+    // Display tree structure based on user choice
     if (opt == 1)
         bPTree->display(bPTree->getRoot());
     else
@@ -60,22 +61,17 @@ void deleteMethod(BPTree* bPTree) {
     cin >> tmp;
     bPTree->removeKey(tmp);
 
-    //Displaying
     bPTree->display(bPTree->getRoot());
 }
 
 int main() {
-    /*
-		Please have a look at the default schema to get to know about the table
-		Reference - img/database.jpg
-	*/
-
     cout << "\n***Welcome to DATABASE SERVER**\n"
          << endl;
 
     bool flag = true;
     int option;
 
+    // Initialize B+ tree with user-defined node capacities
     int maxChildInt = 4, maxNodeLeaf = 3;
     cout << "Please provide the value to limit maximum child Internal Nodes can have: ";
     cin >> maxChildInt;
@@ -84,6 +80,7 @@ int main() {
 
     BPTree* bPTree = new BPTree(maxChildInt, maxNodeLeaf);
 
+    // Main program loop for database operations
     do {
         cout << "\nPlease provide the queries with respective keys : " << endl;
         cout << "\tPress 1: Insertion \n\tPress 2: Search \n\tPress 3: Print Tree\n\tPress 4: Delete Key In Tree\n\tPress 5: ABORT!" << endl;
