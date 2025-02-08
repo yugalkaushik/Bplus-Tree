@@ -38,8 +38,8 @@ The project showcases an **optimized indexing mechanism** using B+ Trees, ensuri
 
 ### Clone the Repository  
 ```sh
-git clone https://github.com/yourusername/B-Plus-Tree-Database.git
-cd B-Plus-Tree-Database 
+git clone https://github.com/yourusername/Bplus-Tree.git
+cd Bplus-Tree 
 ```
 ### Compile the Code
 ```sh
