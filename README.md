@@ -38,7 +38,7 @@ The project showcases an **optimized indexing mechanism** using B+ Trees, ensuri
 
 ### Clone the Repository  
 ```sh
-git clone https://github.com/yourusername/Bplus-Tree.git
+git clone https://github.com/yugalkaushik/Bplus-Tree.git
 cd Bplus-Tree 
 ```
 ### Compile the Code
